@@ -1,18 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title><%= title %></title>
-    <%= render :partial => 'layouts/stylesheets' %>
-  </head>
-  <body>
-    <div class="container">
-      <%= render :partial => 'layouts/header' %>
-      <div id="content" class="round">
-        <%= yield %>
-      </div>
-      <%= render :partial => 'layouts/footer' %>
-    </div>
-  </body>
+<head>
+	<title><%= title %></title>
+	<%= render :partial => 'layouts/stylesheets' %>
+</head>
+<body>
+	<div class="container">
+		<%= render :partial => 'layouts/header' %>
+		<div id="content" class="round">
+			<%= yield %>
+		</div>
+		<%= render :partial => 'layouts/footer' %>
+		<%= debug(params) if RAILS_ENV == "development" %>
+	</div>
+</body>
 </html>
 
