@@ -138,6 +138,15 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
+/* Users index */
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+
 /* form error messages */
 .fieldWithErrors {
   padding: 2px;

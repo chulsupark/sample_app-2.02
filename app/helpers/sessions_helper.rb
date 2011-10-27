@@ -7,6 +7,19 @@ module SessionsHelper
     self.current_user = user
   end
   
+  def create
+    user = User.authenticate(params[:session][:email],
+                             params[:session][:password])
+    if user.nil?
+      flash.now[:error] = "Invalid email/password combination."
+      @title = "Sign in"
+      render :action => :new
+    else
+      sign_in user
+      redirect_back_or user
+    end
+  end
+  
   def current_user=(user)
     @current_user = user
   end
@@ -32,5 +45,28 @@ module SessionsHelper
   def destroy
     sign_out
     redirect_to root_path
+  end
+  
+  def current_user?(user)
+    user == current_user
+  end
+
+  def deny_access
+    store_location
+    flash[:notice] = "Please sign in to access this page."
+    redirect_to signin_path
+  end
+
+  def store_location
+    session[:return_to] = request.request_uri
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    clear_return_to
+  end
+
+  def clear_return_to
+    session[:return_to] = nil
   end
 end
